@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}  Adres {% endblock title %}
+
+{% block main_contend %}
+    <div class="container my-5">
+        <div class="row">
+            <h3>Hoş Geldiniz <span class="text-capitalize">{{request.user}}</span></h3>
+    
+            <div class="col-sm-2 border-end">
+                <ul class="list-unstyled">
+                    <li class="d-grid"> <a href="{% url 'profilim' %}" class="btn">Profilim</a></li>
+                    <li class="d-grid"> <a href="{% url 'adres' %}" class="btn btn-primary">Adres</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 offset-sm-1">
+                <div class="row">
+                  
+                    {% for ad in add %}
+                    <div class="col-sm-6">
+                        
+                        <div class="card m-2">
+                           
+                            <div class="card-body">
+                                <h3>Adres {{forloop.counter}}</h3>
+                                <p>İsim : {{ad.name}}</p>
+                                <p>Mahalle : {{ad.locality}}</p>
+                                <p>Cep Tlf. : {{ad.mobile}}</p>
+                                <p>İlçe : {{ad.city}}</p>
+                                <p>İL : {{ad.state}}</p>
+                                <p>Posta Kodu : {{ad.zipcode}}</p>
+                                <p class="text-center"> <a href="{% url 'adresguncelle' pk=ad.id %}" type="button" class="btn btn-success">Güncelle</a></p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}  
+                </div>
+               
+            </div>      
+{% endblock main_contend %}

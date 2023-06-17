@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}  Ürün Detay {% endblock title %}
+
+
+{% block main_contend %} 
+<div class="container my-5">
+    <div class="row flex justify-content-between">
+        <div class="img2 col-lg-5 mt-5">
+            <img src="{{urun.urun_foto.url}}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75" alt="">
+        </div>
+        <div class="urundetay col-lg-6">
+            <h1 style="font-family: Georgia; font-size: 50px;">{{urun.title}}</h1>
+            <h5>Fiyat-->{{urun.indirimli_fiyat}}/-</h5>
+            <small class="text-decoration-line-through text-muted fs-5"><del>Fiyat-->{{urun.satis_fiyati}}/-</small></del><br><br><h4> Ürün Ayrınları</h4>
+            <ul class="fs-5" style="font-family: Rajdhani;">
+                <li>{{ urun.urun_aciklama}}</li>
+                <li>Compisition : {{urun.composition}}</li>
+                <li>Use : {{urun.prodapp}}</li>
+            </ul>
+            
+                <form method="GET" action="/add-to-cart" class="d-inline">
+                    <input type="hidden" name="prod_id" value={{urun.id}} />
+                    <button type="submit" class="btn btn-primary shadow px-5 py-2">Sepete Ekle</button>   
+                 </form>         
+            <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-5 py-2 ms-4"> Satın AL </a>
+            {% if wishlist %}
+            <a pid="{{urun.id}}" class="minus-wishlist btn btn-danger shadow px-5 py-2 ms-4"><i class="fas fa-heart fa-lg"></i></a>
+            {% else %}
+            <a pid="{{urun.id}}" class="plus-wishlist btn btn-success shadow px-5 py-2 ms-4"><i class="fas fa-heart fa-lg"></i></a>
+            {% endif %}
+        
+        </div>
+    </div>
+</div>
+{% endblock main_contend %} 

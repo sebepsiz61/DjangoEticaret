@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}  Şifre Değişim Tamam {% endblock title %}
+
+{% block main_contend %}
+
+<div class="container my-5">
+    <div class="row">
+        <h3>Hoş Geldiniz <span class="text-center">{{request.user.username|capfirst}}</span></h3>
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="{% url 'profilim' %}" class="btn btn-primary">Şifre Değişim Tamamlandı</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 offset-sm-1 text-center">
+            <h3>Şifre Başarıyla Değişildi....</h3>
+            <div><a href="{% url 'profilim' %}">
+                <img src="{% static 'app/images/giphy.gif' %}" />
+              </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main_contend %}
+
+

@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}  Kategori {% endblock title %}
+
+
+{% block main_contend %} 
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-sm-3">
+                    <div class="list-group">
+                {% for val in baslik %} 
+                <a href="{% url 'kategori-baslik' val.title %}" class="list-group-item list-group-item-action" aria-current="true">{{ val.title  }}</a>
+                {% endfor %}
+            </div>
+                
+            </div>
+            
+            <div class="col-sm-9">
+                <div class="row">
+                     {% for prod in urun %}
+                        <div class="col text-center mb-4">
+                            <a href="{% url 'urun-detay' prod.id %}" class="btn">
+                                <div>
+                                    <img src="{{ prod.urun_foto.url}}" width="300px" height="200px" />
+                                    <div class="fw-bold">{{prod.title}}</div>
+                                    <div class="fw-bold text-danger">
+                                        Fiyat-->{{prod.indirimli_fiyat}}/- 
+                                        <small class="fw-light text-decoration-line-through">{{prod.satis_fiyati}}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                     {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock main_contend %}
